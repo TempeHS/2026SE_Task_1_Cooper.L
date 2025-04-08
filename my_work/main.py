@@ -5,6 +5,7 @@ def main():
     elif Choice_1 == "2":
         Register()
     elif Choice_1 != "3":
+        print("Invalid Choice")
         main()
 
 def Register():
@@ -16,10 +17,11 @@ def Register():
                 print("Username Already Taken")
                 Register()
     NewPass = input("Password? ")
-    with open("test.txt", "a") as file:
+    if len(NewPass) <= 4:
+        print("Password must be 4 or more characters")
+    else:
+        file = open("test.txt", "a")
         file.write(f"{NewUser},{NewPass}\n")
-        main()
-
 
 def Logged_In():
     Choice_2 = input("Change Password - 1, Logout - 2 ")
@@ -29,9 +31,6 @@ def Logged_In():
         main()
     else:
         Logged_In()
-
-
-
 
 def Log_In():
     Username = input("Username? ")
@@ -45,11 +44,5 @@ def Log_In():
                 Logged_In()
         if data1 == 0:
             Log_In()
-
-
-
-
-
-
 
 main()
